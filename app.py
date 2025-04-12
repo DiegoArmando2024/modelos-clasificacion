@@ -12,6 +12,7 @@ def get_db_connection():
 # Ruta principal (menú de modelos)
 @app.route('/')
 def index():
+    print("Cargando modelos desde la base de datos...")
     conn = get_db_connection()
     modelos = conn.execute('SELECT id, nombre FROM modelos').fetchall()
     conn.close()
