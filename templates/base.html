@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Modelos de ML{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        header, footer {
+            background-color: #222;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #eee;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+        .modelo {
+            border: 1px solid #ccc;
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Modelos de Clasificación Supervisada</h1>
+    </header>
+
+    <nav>
+        <a href="/">Inicio</a>
+        {% for modelo in modelos %}
+            <a href="/modelo/{{ modelo[0] }}">{{ modelo[1] }}</a>
+        {% endfor %}
+    </nav>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>App de aprendizaje Flask - Machine Learning</p>
+    </footer>
+</body>
+</html>
