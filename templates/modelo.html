@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}{{ modelo.nombre }} - Modelo{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>{{ modelo.nombre }}</h1>
+        <img src="{{ url_for('static', filename='images/' + modelo.imagen) }}" alt="{{ modelo.nombre }}" class="img-fluid rounded mb-3 shadow-sm"/>
+        <p>{{ modelo.descripcion }}</p>
+        <p><strong>Fuente:</strong> <a href="{{ modelo.fuente }}" target="_blank">{{ modelo.fuente }}</a></p>
+    </div>
+    <div class="col-md-4">
+        <h4>Otros modelos</h4>
+        <ul class="list-group shadow-sm">
+        {% for m in modelos %}
+            {% if m.nombre != modelo.nombre %}
+            <li class="list-group-item"><a href="{{ url_for('modelo_individual', nombre_modelo=m.nombre) }}">{{ m.nombre }}</a></li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Almacenamiento en Base de Datos{% endblock %}
+{% block content %}
+<h1>Modelos almacenados en la base de datos</h1>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<table class="table table-striped table-hover shadow-sm">
+    <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Fuente</th>
+            <th>Imagen</th>
+            <th>Fecha de creación</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for m in modelos %}
+        <tr>
+            <td>{{ m['id'] }}</td>
+            <td>{{ m['nombre'] }}</td>
+            <td>{{ m['descripcion'] }}</td>
+            <td><a href="{{ m['fuente'] }}" target="_blank">{{ m['fuente'] }}</a></td>
+            <td><img src="{{ url_for('static', filename='images/' + m['imagen']) }}" alt="{{ m['nombre'] }}" width="100" class="rounded shadow-sm"></td>
+            <td>{{ m['fecha_creacion'] }}</td>
+            <td>
+                <form method="POST" action="{{ url_for('eliminar_modelo', id=m['id']) }}" style="display: inline;"
+                      onsubmit="return confirm('¿Estás seguro de que deseas eliminar este modelo?');">
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2 class="mt-4">Agregar un nuevo modelo</h2>
+<form method="post" action="{{ url_for('agregar_modelo') }}" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre del modelo</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="fuente" class="form-label">Fuente</label>
+        <input type="text" class="form-control" id="fuente" name="fuente" required>
+    </div>
+    <div class="mb-3">
+        <label for="imagen" class="form-label">Imagen</label>
+        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar modelo</button>
+</form>
+{% endblock %}

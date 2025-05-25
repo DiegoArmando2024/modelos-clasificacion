@@ -1,0 +1,314 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card-img-top:hover {
+    transform: scale(1.1);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative; /* Necesario para posicionar las estrellas */
+    overflow: hidden; /* Oculta las estrellas que se salen del botón */
+}
+
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: rotate(45deg) translate(-50%, -50%);
+    animation: shine 3s infinite linear;
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(45deg) translate(-50%, -50%);
+    }
+    100% {
+        transform: rotate(45deg) translate(50%, 50%);
+    }
+}
+
+.sparkle-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.spark {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle 0.5s ease-out;
+}
+
+@keyframes sparkle {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+}
+
+.carousel-item {
+    height: 400px; /* Ajusta la altura según tus preferencias */
+}
+
+.carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilos para los enlaces de la barra de navegación */
+.navbar-nav .nav-link {
+    position: relative;
+    color: rgba(255, 255, 255, 0.8); /* Color inicial */
+    transition: color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.navbar-nav .nav-link:hover {
+    color: white; /* Color al pasar el cursor */
+}
+
+.navbar-nav .nav-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white; /* Color de la línea */
+    transform: scaleX(0); /* Inicialmente no se muestra */
+    transform-origin: left;
+    transition: transform 0.3s ease; /* Transición suave para la aparición de la línea */
+}
+
+.navbar-nav .nav-link:hover::before {
+    transform: scaleX(1); /* Se muestra la línea al pasar el cursor */
+}
+
+/* Estilos para el botón "Ver más" */
+.ver-mas-button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: 0.5s;
+    letter-spacing: 2px;
+    background: #007bff;
+    border-radius: 5px;
+}
+
+.ver-mas-button:hover {
+    background: #03a9f4;
+    color: #fff;
+}
+
+.ver-mas-button span {
+    position: absolute;
+    display: block;
+}
+
+.ver-mas-button span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03a9f4);
+    animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.ver-mas-button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03a9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+.ver-mas-button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03a9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 100%;
+    }
+}
+
+.ver-mas-button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03a9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes animate4 {
+    0% {
+        bottom: -100%;
+    }
+    100% {
+        bottom: 100%;
+    }
+}
+
+/* Estilos para las estrellas */
+.ver-mas-button:hover .stars {
+    display: block;
+}
+
+.stars {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.stars span {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #fffdef;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 10px #fffdef);
+    animation: stars-animation 3s infinite;
+}
+
+.stars span:nth-child(1) {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.stars span:nth-child(2) {
+    top: 30%;
+    left: 60%;
+    animation-delay: 0.2s;
+}
+
+.stars span:nth-child(3) {
+    top: 90%;
+    left: 40%;
+    animation-delay: 0.4s;
+}
+
+.stars span:nth-child(4) {
+    top: 50%;
+    left: 90%;
+    animation-delay: 0.6s;
+}
+
+.stars span:nth-child(5) {
+    top: 70%;
+    left: 20%;
+    animation-delay: 0.8s;
+}
+
+@keyframes stars-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    80% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
